@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-es" lang="es-es" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,9 +62,104 @@
     </div>
   </div>
 
-  
+  <script>
+  // JavaScript to update content when an exoplanet is selected
+const exoplanetData = {
+  gliese12b: {
+    name: 'Gliese 12 b',
+    discovered: '2024',
+    type: 'Super Earth',
+    details: 'Gliese 12 b is a super Earth exoplanet that orbits an M-type star. Its mass is 3.87 Earths, and it takes 12.8 days to complete one orbit.',
+    orbitalRadius: '0.0668 AU',
+    orbitalPeriod: '12.8 days',
+    eccentricity: '< 0.5',
+    mass: '3.87 Earths',
+    radius: '0.958 x Earth',
+    starComparison: {
+      mass: '0.24 x Our Sun',
+      radius: '0.26 x Our Sun'
+    },
+    image: 'images/gliese12b.webp' // Add corresponding image path here
+  },
+  gliese667cc: {
+    name: 'Gliese 667 Cc',
+    discovered: '2011',
+    type: 'Super Earth',
+    details: 'Gliese 667 Cc is located in the habitable zone of a red dwarf star, making it an intriguing candidate for potentially harboring life.',
+    orbitalRadius: '0.125 AU',
+    orbitalPeriod: '28.1 days',
+    eccentricity: 'Unknown',
+    mass: '4.5 Earths',
+    radius: '1.5 x Earth',
+    starComparison: {
+      mass: '0.31 x Our Sun',
+      radius: '0.42 x Our Sun'
+    },
+    image: 'images/gliese667cc.jpg' // Add corresponding image path here
+  },
+  kepler22b: {
+    name: 'Kepler-22b',
+    discovered: '2009',
+    type: 'Super Earth',
+    details: 'Kepler-22b orbits a G-type star and is one of the first known potentially habitable exoplanets. It has a radius of 2.4 Earths.',
+    orbitalRadius: '0.85 AU',
+    orbitalPeriod: '289 days',
+    eccentricity: 'Unknown',
+    mass: '5.36 Earths',
+    radius: '2.4 x Earth',
+    starComparison: {
+      mass: '1 x Our Sun',
+      radius: '1 x Our Sun'
+    },
+    image: 'images/Kepler22b.webp' // Add corresponding image path here
+  },
+  proximab: {
+    name: 'Proxima Centauri b',
+    discovered: '2016',
+    type: 'Terrestrial',
+    details: 'Proxima Centauri b is the closest known exoplanet to Earth, orbiting the star Proxima Centauri in the habitable zone.',
+    orbitalRadius: '0.0485 AU',
+    orbitalPeriod: '11.2 days',
+    eccentricity: '0.35',
+    mass: '1.17 Earths',
+    radius: '1.1 x Earth',
+    starComparison: {
+      mass: '0.12 x Our Sun',
+      radius: '0.14 x Our Sun'
+    },
+    image: 'images/proximab.webp' // Add corresponding image path here
+  }
+};
+
+// Function to show the selected exoplanet's data
+function showExoplanet(exoplanetKey) {
+  const exoplanet = exoplanetData[exoplanetKey];
+  const exoplanetInfoDiv = document.getElementById('exoplanet-info');
+
+  if (exoplanet) {
+    exoplanetInfoDiv.innerHTML = `
+      <h1>${exoplanet.name}</h1>
+      <img src="${exoplanet.image}" alt="${exoplanet.name}" class="exoplanet-image"> <!-- Display Image -->
+      <p><strong>Discovered:</strong> ${exoplanet.discovered}</p>
+      <p><strong>Type:</strong> ${exoplanet.type}</p>
+      <p>${exoplanet.details}</p>
+      <p><strong>Orbital Radius:</strong> ${exoplanet.orbitalRadius}</p>
+      <p><strong>Orbital Period:</strong> ${exoplanet.orbitalPeriod}</p>
+      <p><strong>Orbital Eccentricity:</strong> ${exoplanet.eccentricity}</p>
+      <p><strong>Mass:</strong> ${exoplanet.mass}</p>
+      <p><strong>Radius:</strong> ${exoplanet.radius}</p>
+      <h3>Star Comparison</h3>
+      <p><strong>Star Mass:</strong> ${exoplanet.starComparison.mass}</p>
+      <p><strong>Star Radius:</strong> ${exoplanet.starComparison.radius}</p>
+    `;
+  } else {
+    exoplanetInfoDiv.innerHTML = `<p>Please select an exoplanet to display its information.</p>`;
+  }
+}
+
+</script>
         
     </div>
-	<script src="script.js"></script>
+	
 </body>
 </html>

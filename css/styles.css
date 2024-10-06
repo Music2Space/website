@@ -18,6 +18,7 @@ body {
 }
 
 .container {
+	margin-top:20px;
     width: 95%;
     max-width: 1500px;
     background-color: white;

@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exoplanet Song Uploader</title>
     <link rel="stylesheet" href="css/styles.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <div class="container">
         
 		<header>
-        <img src="images/music2space_banner_web.png" alt="Exoplanetas y Música" class="header-image">  
+        <img src="images/music2space_banner_web.png" alt="Exoplanetas y Música" class="header-image">       
         <nav>
             <ul>
 				<li><a href="index.html">Home</a></li>
@@ -23,42 +25,71 @@
         </nav>
     </header>
  <!-- Main Content Section -->
-    <div class="content">
-      <!-- Search Bar and Filters -->
-      <div class="search-section">
-        <input type="text" placeholder="Search by exoplanet or user..." class="search-bar" oninput="searchExoplanet(this.value)">
-        <div class="song-filter">
-          <label>Exoplanet</label>
-          <select id="exoplanet-dropdown" onchange="showExoplanet(this.value)">
-            <option value="">Select Exoplanet</option>
-            <option value="gliese12b">Gliese 12 b</option>
-            <option value="gliese667cc">Gliese 667 Cc</option>
-            <option value="kepler22b">Kepler-22b</option>
-            <option value="proximab">Proxima Centauri b</option>
-          </select>
+   <!-- Main Content Section -->
+<div class="content">
+  <!-- Search Bar and Filters -->
+  <div class="search-section">
+    <input type="text" placeholder="Search by exoplanet or user..." class="search-bar" oninput="searchExoplanet(this.value)">
+    <div class="song-filter">
+      <label>Exoplanet</label>
+      <select id="exoplanet-dropdown" onchange="showExoplanet(this.value)">
+        <option value="">Select Exoplanet</option>
+        <option value="gliese12b">Gliese 12 b</option>
+        <option value="gliese667cc">Gliese 667 Cc</option>
+        <option value="kepler22b">Kepler-22b</option>
+        <option value="proximab">Proxima Centauri b</option>
+      </select>
 
-          <label>User</label>
-          <select id="user-dropdown">
-            <option value="">Select User</option>
-            <option value="user1">User1</option>
-            <option value="user2">User2</option>
-            <!-- Add more users if needed -->
-          </select>
-        </div>
-		<!--   <ul class="song-list">
-                    <li>Song 1 - Kepler-22b</li>
-                    <li>Song 2 - TRAPPIST-1e</li>
-                    <li>Song 3 - Proxima Centauri b</li>
-                </ul>
-      Exoplanet Information -->
-      </div>
-
-      <!-- Exoplanet Information -->
-      <div class="exoplanet-info" id="exoplanet-info">
-        <h1>Welcome to Exoplanet Explorer</h1>
-        <p>Select an exoplanet or search for information above.</p>
-      </div>
+      <label>User</label>
+      <select id="user-dropdown">
+        <option value="">Select User</option>
+        <option value="user1">User1</option>
+        <option value="user2">User2</option>
+        <!-- Add more users if needed -->
+      </select>
     </div>
+  </div>
+
+  <!-- Exoplanet Information -->
+  <div class="exoplanet-info content-box" id="exoplanet-info">
+    <h1>Welcome to Exoplanet Explorer</h1>
+    <p>Select an exoplanet or search for information above.</p>
+  </div>
+   </div>
+<div class="content">
+  <!-- Song Selection - Move Below Exoplanet Information -->
+  <div class="song-selection content-box">
+    <h2>Select a Song</h2>
+    <select id="song-dropdown" onchange="showSong(this.value)">
+      <option value="">Select Song</option>
+      <option value="song1">Song to Gliese 12 b</option>
+      <option value="song2">Kepler-22b Melody</option>
+      <option value="song3">Proxima B Soundscape</option>
+    </select>
+  </div>
+
+  <!-- Song Information -->
+  <div id="song-info" class="content-box">
+  <div id="song-info" class="content-box">
+  <h1>Welcome to the Song Explorer</h1>
+  <p>Select a song to see the details.</p>
+  
+  <!-- Audio Player -->
+  <audio id="audio-player" controls style="display: none;">
+    <source id="audio-source" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Play Button -->
+  <button id="play-button" style="display: none;" onclick="playSong()">Play Song</button>
+
+  <!-- Canvas for Chart -->
+  <canvas id="songChart" width="400" height="200" style="display: block;"></canvas>
+</div>
+  </div>
+  
+</div>
+</div>
   </div>
 
   <script>
@@ -155,6 +186,115 @@ function showExoplanet(exoplanetKey) {
     exoplanetInfoDiv.innerHTML = `<p>Please select an exoplanet to display its information.</p>`;
   }
 }
+
+// JavaScript to update content when a song is selected
+
+const songsData = {
+  song1: {
+    title: 'Song to Gliese 12 b',
+    artist: 'AstroSounds',
+    description: 'A melodic tribute to the mysterious Gliese 12 b, evoking the feeling of a distant journey.',
+    duration: '3:45',
+    genre: 'Ambient',
+    album: 'Sounds of the Universe',
+    audioUrl: 'audio/Gliese_8818843.mp3' // Link to the song file
+  },
+  song2: {
+    title: 'Kepler-22b Melody',
+    artist: 'Space Voyager',
+    description: 'A peaceful instrumental track inspired by the potential for life on Kepler-22b.',
+    duration: '5:10',
+    genre: 'Electronic',
+    album: 'Celestial Harmonies',
+    audioUrl: 'audio/Gliese_8818844.mp3' // Link to the song file
+  },
+  song3: {
+    title: 'Proxima B Soundscape',
+    artist: 'Stellar Winds',
+    description: 'An ethereal piece capturing the essence of the closest exoplanet, Proxima Centauri b.',
+    duration: '4:20',
+    genre: 'Soundscape',
+    album: 'Galactic Waves',
+    audioUrl: 'audio/song3.mp3' // Link to the song file
+  }
+};
+
+// Function to show the selected song's data and play functionality
+function showSong(songKey) {
+  const song = songsData[songKey];
+  const songInfoDiv = document.getElementById('song-info');
+  const audioPlayer = document.getElementById('audio-player');
+  const audioSource = document.getElementById('audio-source');
+  const playButton = document.getElementById('play-button');
+  const chartCanvas = document.getElementById('songChart');
+
+  if (song) {
+    // Update the song info content
+    songInfoDiv.innerHTML = `
+      <h1>${song.title}</h1>
+      <p><strong>Artist:</strong> ${song.artist}</p>
+      <p><strong>Description:</strong> ${song.description}</p>
+      <p><strong>Duration:</strong> ${song.duration}</p>
+      <p><strong>Genre:</strong> ${song.genre}</p>
+      <p><strong>Album:</strong> ${song.album}</p>
+    `;
+
+    // Update the audio player source
+    audioSource.src = song.audioUrl;
+    audioPlayer.load(); // Reload the audio element with the new source
+    audioPlayer.style.display = 'block'; // Keep the audio controls hidden
+
+    // Show the play button and attach the song URL to it
+    playButton.style.display = 'block';
+    playButton.setAttribute('data-audio-url', song.audioUrl);
+
+    // Render the chart with song duration as data
+    const ctx = chartCanvas.getContext('2d');
+    chartCanvas.style.display = 'block'; // Show the chart
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Duration (minutes)'],
+        datasets: [{
+          label: `${song.title} Duration`,
+          data: [parseFloat(song.duration.split(':')[0]) + parseFloat(song.duration.split(':')[1]) / 60],
+          backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+          borderColor: ['rgba(75, 192, 192, 1)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  } else {
+    songInfoDiv.innerHTML = `<p>Please select a song to display its information.</p>`;
+    audioPlayer.style.display = 'none'; // Hide the audio player if no song is selected
+    playButton.style.display = 'none'; // Hide the play button if no song is selected
+    chartCanvas.style.display = 'none'; // Hide the chart if no song is selected
+  }
+}
+
+// Function to play the song when the play button is clicked
+function playSong() {
+  const audioPlayer = document.getElementById('audio-player');
+  const playButton = document.getElementById('play-button');
+  const audioUrl = playButton.getAttribute('data-audio-url');
+
+  // Set the audio source and play the song
+  const audioSource = document.getElementById('audio-source');
+  audioSource.src = audioUrl;
+  audioPlayer.load(); // Reload the audio player with the new source
+  audioPlayer.play(); // Play the song
+}
+
+
+
+
 
 </script>
         

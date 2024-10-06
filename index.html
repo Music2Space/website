@@ -69,19 +69,13 @@
   </div>
 
   <!-- Song Information -->
-  <div id="song-info" class="content-box">
+  
   <div id="song-info" class="content-box">
   <h1>Welcome to the Song Explorer</h1>
   <p>Select a song to see the details.</p>
   
-  <!-- Audio Player -->
-  <audio id="audio-player" controls style="display: none;">
-    <source id="audio-source" src="" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 
-  <!-- Play Button -->
-  <button id="play-button" style="display: none;" onclick="playSong()">Play Song</button>
+
 
   <!-- Canvas for Chart -->
   <canvas id="songChart" width="400" height="200" style="display: block;"></canvas>
@@ -188,7 +182,11 @@ function showExoplanet(exoplanetKey) {
 }
 
 // JavaScript to update content when a song is selected
-
+   let audioContext;
+        let analyser;
+        let dataArray;
+        let bufferLength;
+        let chartInstance = null;
 const songsData = {
   song1: {
     title: 'Song to Gliese 12 b',
@@ -241,12 +239,9 @@ function showSong(songKey) {
 
     // Update the audio player source
     audioSource.src = song.audioUrl;
-    audioPlayer.load(); // Reload the audio element with the new source
+   // audioPlayer.load(); // Reload the audio element with the new source
     audioPlayer.style.display = 'block'; // Keep the audio controls hidden
 
-    // Show the play button and attach the song URL to it
-    playButton.style.display = 'block';
-    playButton.setAttribute('data-audio-url', song.audioUrl);
 
     // Render the chart with song duration as data
     const ctx = chartCanvas.getContext('2d');
@@ -295,6 +290,88 @@ function playSong() {
 
 
 
+        function showSong(songKey) {
+            const song = songsData[songKey];
+            const songInfoDiv = document.getElementById('song-info');
+
+            if (song) {
+                // Update the song info content, including the audio player, play button, and chart canvas
+                songInfoDiv.innerHTML = `
+                    <h1>${song.title}</h1>
+                    <p><strong>Artist:</strong> ${song.artist}</p>
+                    <p><strong>Description:</strong> ${song.description}</p>
+                    <p><strong>Duration:</strong> ${song.duration}</p>
+                    <p><strong>Genre:</strong> ${song.genre}</p>
+                    <p><strong>Album:</strong> ${song.album}</p>
+
+                    <!-- Audio Player -->
+                    <audio id="audio-player" controls>
+                        <source id="audio-source" src="${song.audioUrl}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <!-- Canvas for Music Visualizer -->
+                    <canvas id="visualizer" width="600" height="200"></canvas>
+                `;
+
+                // Initialize the Web Audio API visualizer when the song plays
+                startVisualizer(document.getElementById('audio-player'));
+            } else {
+                // Clear the content if no song is selected
+                songInfoDiv.innerHTML = `<p>Please select a song to display its information.</p>`;
+            }
+        }
+
+        function startVisualizer(audioElement) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            analyser = audioContext.createAnalyser();
+            const source = audioContext.createMediaElementSource(audioElement);
+
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            analyser.fftSize = 256;
+            bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+
+            drawVisualizer();
+        }
+
+        function drawVisualizer() {
+            const canvas = document.getElementById('visualizer');
+            const canvasCtx = canvas.getContext('2d');
+
+            function draw() {
+                requestAnimationFrame(draw);
+
+                analyser.getByteFrequencyData(dataArray);
+
+                canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const barWidth = (canvas.width / bufferLength) * 2.5;
+                let barHeight;
+                let x = 0;
+
+                for (let i = 0; i < bufferLength; i++) {
+                    barHeight = dataArray[i];
+
+                    canvasCtx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
+                    canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+
+                    x += barWidth + 1;
+                }
+            }
+
+            draw();
+        }
+
+        function playSong() {
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.play(); // Play the song
+        }
 
 </script>
         

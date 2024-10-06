@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {  
+	background-image: url('/images/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #ececec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Header and Navigation Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 20px;
+    color: white;
+}
+
+.header-image {
+    height: 50px;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Styles */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.song-search, .exoplanet-info {
+    width: 45%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.song-search h2, .exoplanet-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.song-filter {
+    margin-bottom: 20px;
+}
+
+.song-filter label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #444;
+}
+
+.song-filter select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.song-list ul {
+    list-style: none;
+}
+
+.song-list li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+}
+
+.planet-image img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.info-box p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+strong {
+    color: #444;
+}
+
+
+section {
+    padding: 20px;
+}
+
+/* Style for the footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000; /* Optional: Set your background color */
+    color: white; /* Footer text color */
+    text-align: center;
+    padding: 0px;
+    font-size: 14px;
+}
+
+input, label {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="submit"] {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Styling for the news articles */
+article {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+article h3 {
+    color: #333;
+}
+
+article p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+       header {
+		    background-image: url('../images/exoplaneta_header.webp');
+			background-size: cover;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #001f5b; /* Dark Blue Background */
+            padding: 10px 20px;
+            color: white;
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px; /* Adjust based on your logo size */
+            margin-right: 10px;
+        }
+
+        /* Navigation Menu Styling */
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #0a84ff; /* Light Blue Hover */
+            border-radius: 4px;
+        }
+
+        /* Button styling on the right */
+        .button {
+            background-color: #e4ff1a; /* Bright yellow */
+            padding: 8px 15px;
+            color: #001f5b; /* Dark blue text */
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #d4e700;
+        }
+		/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content {
+  padding: 20px;
+  background-color: #222;
+  border-radius: 10px;
+  color: white;
+}
+
+.search-section {
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #333;
+  color: white;
+}
+
+.song-filter {
+  display: flex;
+  gap: 20px;
+}
+
+.song-filter label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.song-filter select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #333;
+  color: white;
+}
+
+#exoplanet-info {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#exoplanet-info h1 {
+  color: #ffa500;
+  font-size: 32px;
+}
+
+#exoplanet-info p {
+  font-size: 18px;
+}

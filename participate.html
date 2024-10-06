@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participate - Exploring Exoplanets Through Music</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        
+		<header>
+        <img src="images/musictospace.png" alt="Exoplanetas y Música" class="header-image">
+        <h1>Music To Space</h1>
+        <nav>
+            <ul>
+				<li><a href="index.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="participate.html">Participate</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Form to Upload your Song</h2>
+        <form action="/submit_song" method="POST" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="song">Upload your song:</label>
+            <input type="file" id="song" name="song" accept="audio/*" required>
+
+            <label for="email">Smail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</div>
+    <footer>
+        <p>&copy; 2024 Music To Space</p>
+    </footer>
+	
+</body>
+</html>

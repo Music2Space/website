@@ -137,7 +137,7 @@ nav ul li a:hover {
 }
 
 strong {
-    color: #444;
+    color: #FF9B3B;
 }
 
 
@@ -251,25 +251,17 @@ article p {
             background-color: #d4e700;
         }
 		/* General Styling */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #1a1a1a;
-  color: #fff;
-}
 
-.container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
 
 .content {
   padding: 20px;
   background-color: #222;
   border-radius: 10px;
   color: white;
+  display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .search-section {
@@ -317,4 +309,9 @@ body {
 
 #exoplanet-info p {
   font-size: 18px;
+}
+.exoplanet-image {
+  width: 300px;
+  height: auto;
+  margin: 20px 0;
 }
